@@ -14,6 +14,10 @@ COPY support ${APP_ROOT}/support
 # Install LibreOffice & Common Fonts
 RUN apk --no-cache add bash libreoffice \
                             ttf-droid-nonlatin ttf-droid ttf-dejavu ttf-freefont ttf-liberation && \
+# Install chinese fonts
+  apk add --no-cache --repository http://nl.alpinelinux.org/alpine/edge/testing --allow-untrusted \
+                  wqy-zenhei \
+                  && \
 # Install Microsoft Core Fonts
   apk --no-cache add msttcorefonts-installer fontconfig && \
   update-ms-fonts && \
