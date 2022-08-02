@@ -22,6 +22,12 @@ RUN apk --no-cache add bash libreoffice \
   apk --no-cache add msttcorefonts-installer fontconfig && \
   update-ms-fonts && \
   fc-cache -f && \
+# Install barcode fonts
+  su - node -c 'mkdir /home/node/.fonts' && \
+  su - node -c 'wget https://carbone.io/examples/ean13.ttf   -O /home/node/.fonts/ean13.ttf' && \
+  su - node -c 'wget https://carbone.io/examples/code128.ttf -O /home/node/.fonts/code128.ttf' && \
+  su - node -c 'wget https://carbone.io/examples/code39.ttf  -O /home/node/.fonts/code39.ttf' && \
+  su - node -c 'fc-cache -f' && \
 # clean up
   rm -rf /var/cache/apk/* && \
 # Fix Python/LibreOffice Integration
