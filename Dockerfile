@@ -28,8 +28,15 @@ RUN apk --no-cache add bash libreoffice \
   su - node -c 'wget https://carbone.io/examples/code128.ttf -O /home/node/.fonts/code128.ttf' && \
   su - node -c 'wget https://carbone.io/examples/code39.ttf  -O /home/node/.fonts/code39.ttf' && \
   su - node -c 'fc-cache -f' && \
+# Install Google fonts - https://axellarsson.com/blog/google-fonts-docker-container/
+  wget https://github.com/google/fonts/archive/main.tar.gz -O /tmp/gf.tar.gz && \
+  cd /tmp && \
+  tar -xf gf.tar.gz && \
+  mkdir -p /usr/share/fonts/truetype/google-fonts && \
+  find $PWD/fonts-main/ -name "*.ttf" -exec install -m644 {} /usr/share/fonts/truetype/google-fonts/ \; || return 1 && \
+  fc-cache -f && \
 # clean up
-  rm -rf /var/cache/apk/* && \
+  rm -rf /tmp/* /var/cache/* && \
 # Fix Python/LibreOffice Integration
   chmod a+rx ${APP_ROOT}/support/bindPython.sh && \
   ${APP_ROOT}/support/bindPython.sh
