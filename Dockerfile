@@ -1,6 +1,6 @@
 # We want to stick with the lts-alpine tag, but need to ensure we explicitly track base images
 # FROM docker.io/node:lts-alpine
-FROM docker.io/node:18.16.0-alpine
+FROM docker.io/node:18.19.0-alpine
 
 ARG APP_ROOT=/opt/libreoffice
 ENV NO_UPDATE_NOTIFIER=true \
@@ -15,8 +15,8 @@ COPY support ${APP_ROOT}/support
 RUN apk --no-cache add bash libreoffice \
                             font-droid-nonlatin font-droid font-dejavu font-freefont font-liberation && \
 # Install chinese fonts
-  apk add --no-cache --repository http://nl.alpinelinux.org/alpine/edge/testing --allow-untrusted \
-                  wqy-zenhei \
+  apk add --no-cache --repository http://nl.alpinelinux.org/alpine/edge/community --allow-untrusted \
+                  font-wqy-zenhei \
                   && \
 # Install Microsoft Core Fonts
   apk --no-cache add msttcorefonts-installer fontconfig && \
