@@ -1,6 +1,6 @@
 # We want to stick with the lts-alpine tag, but need to ensure we explicitly track base images
 # FROM docker.io/node:lts-alpine
-FROM docker.io/node:18.20.3-alpine
+FROM docker.io/node:18.20.4-alpine
 
 ARG APP_ROOT=/opt/libreoffice
 ENV NO_UPDATE_NOTIFIER=true \
