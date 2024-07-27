@@ -18,6 +18,8 @@ RUN apk --no-cache add bash libreoffice \
   apk add --no-cache --repository http://nl.alpinelinux.org/alpine/edge/community --allow-untrusted \
                   font-wqy-zenhei \
                   && \
+# Install emoji fonts
+  apk add --no-cache font-noto-emoji && \
 # Install Microsoft Core Fonts
   apk --no-cache add msttcorefonts-installer fontconfig && \
   update-ms-fonts && \
